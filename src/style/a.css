@@ -1,0 +1,17 @@
+.body {
+  width: 100px;
+}
+.dog {
+  background-image: url("~@/assets/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 200px;
+  height: 100px;
+}
+::placeholder {
+  color: red;
+}
+.pidan {
+  width: 135px;
+  height: 240px;
+}

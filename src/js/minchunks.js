@@ -1,0 +1,1 @@
+export const addAge = (a,b)=>a+b
