@@ -1,1 +1,1 @@
-export const addAge = (a,b)=>a+b
+export const addAge = (a,b)=>a+b;

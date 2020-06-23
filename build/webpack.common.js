@@ -11,6 +11,8 @@ module.exports = {
     path: path.join(__dirname, "../dist"),
     filename: isProd ? "js/[name].[chunkhash].js" : "js/[name].js",
     publicPath: "/",
+    //打包umd库
+    // libraryTarget: "umd", //配合externals
   },
   //控制台输出[地址](https://webpack.docschina.org/configuration/stats/)
   stats: {
@@ -18,6 +20,10 @@ module.exports = {
     children: false,
     chunks: false,
     chunkModules: false,
+  },
+  //#### 无需打包 CMD、AMD 或者window/global 1. html引外部cdn 2. 配置externals 3. 不同modules引用
+  externals: {
+    jquery: "jQuery",
   },
   performance: {
     // false | "error" | "warning"
@@ -28,10 +34,16 @@ module.exports = {
     maxAssetSize: 1024 * 1024 * 5,
   },
   resolve: {
+    // 指定extension之后可以不用在require或是import的时候加文件扩展名,会依次尝试添加扩展名进行匹配
+    extensions: [".js", "vue", ".jsx", ".json", ".css"],
     // 设置别名
     alias: {
       "@": path.resolve(__dirname, "../src"), // 这样配置后 @ 可以指向 src 目录
     },
+    // 默认情况下package.json 文件则按照文件中 main 字段的文件名来查找文件
+    // mainFields: ["browser", "module", "main"],
+    // 当目录下没有 package.json 文件时，我们说会默认使用目录下的 index.js 这个文件，其实这个也是可以配置的
+    // mainFiles: ['index'],
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -52,6 +64,8 @@ module.exports = {
     }),
   ],
   module: {
+    // 配置哪些模块文件的内容不需要进行解析,当然被忽略的文件中不能使用 import、require、define 等导入机制
+    // noParse: /jquery|lodash/,
     //loader执行顺序优先级pre > normal > inline > post
     rules: [
       {

@@ -6,6 +6,7 @@ const path = require("path"),
   devConfig = {
     mode: "development",
     devtool: "inline-source-map", //sourcemap [下载地址](https://developers.google.com/closure/compiler#how-do-i-start)
+    //内置express
     devServer: {
       contentBase: path.join(__dirname, "../dist"),
       host: "localhost",

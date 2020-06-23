@@ -34,6 +34,7 @@ optimization = {
 };
 prodConfig = {
   mode: "production",
+  devtool: "none",
   optimization: {
     minimize: true,
     minimizer: [
